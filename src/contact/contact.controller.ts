@@ -16,8 +16,8 @@ import {
 import  { ContactService } from './contact.service';
 import { CreateContactDto } from './dto/create-contact.dto';
 
-@ApiTags('contact-')
-@Controller('contact-')
+@ApiTags('contact')
+@Controller('contact')
 export class ContactController {
   constructor(private readonly contactService: ContactService) {}
 
@@ -26,7 +26,7 @@ export class ContactController {
   @ApiParam({
     name: 'website',
     description: 'Website identifier (allinsys or passb2b)',
-    enum: ['allinsys', 'passb2b'],
+    enum: ['allinsys', 'passb2b', 'abavsp', 'bloodcated'],
     example: 'allinys',
   })
   @ApiBody({ type: CreateContactDto })
