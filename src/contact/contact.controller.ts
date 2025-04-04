@@ -43,7 +43,7 @@ export class ContactController {
     @Body() createContactDto: CreateContactDto,
     @Param('website') website: string,
   ) {
-    if (website !== 'allinsys' && website !== 'passb2b') {
+    if (website !== 'allinsys' && website !== 'passb2b'&& website !== 'abavsp' && website !== 'bloodcasted') {
       throw new HttpException(
         'Invalid website identifier',
         HttpStatus.BAD_REQUEST,
