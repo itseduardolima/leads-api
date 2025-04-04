@@ -11,8 +11,8 @@ export class Contact {
   @Column()
   email: string
 
-  @Column()
-  phone: string
+  @Column({ nullable: true })
+  phone?: string
 
   @Column()
   objective: string

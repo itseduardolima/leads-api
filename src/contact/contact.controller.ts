@@ -26,7 +26,7 @@ export class ContactController {
   @ApiParam({
     name: 'website',
     description: 'Website identifier (allinsys or passb2b)',
-    enum: ['allinsys', 'passb2b', 'abavsp', 'bloodcated'],
+    enum: ['allinsys', 'passb2b', 'abavsp', 'bloodcasted'],
     example: 'allinys',
   })
   @ApiBody({ type: CreateContactDto })
