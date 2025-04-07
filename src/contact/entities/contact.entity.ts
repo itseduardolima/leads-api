@@ -24,6 +24,9 @@ export class Contact {
   location?: string
 
   @Column({ nullable: true })
+  linkedin?: string
+
+  @Column({ nullable: true })
   feedback?: string
 
   @Column({ nullable: true })

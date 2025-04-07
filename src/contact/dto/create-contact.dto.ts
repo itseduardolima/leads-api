@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString, IsOptional, MaxLength, IsEnum } from "class-validator"
+import { IsEmail, IsNotEmpty, IsString, IsOptional, MaxLength, IsEnum, IsUrl } from "class-validator"
 import { ApiProperty } from "@nestjs/swagger"
 
 export class CreateContactDto {
@@ -47,8 +47,8 @@ export class CreateContactDto {
     required: false,
   })
   @IsOptional()
-  @IsEnum(["feira", "internet", "indicacao", "outros"])
-  source?: "feira" | "internet" | "indicacao" | "outros"
+  @IsEnum(["feira", "internet", "indicacao", "outros", "websites",])
+  source?: "feira" | "internet" | "indicacao" | "outros" | "websites"
 
   @ApiProperty({
     description: "Location of the contact",
@@ -79,4 +79,14 @@ export class CreateContactDto {
   @IsString()
   @MaxLength(100)
   businessName?: string
+
+  @ApiProperty({
+    description: "LinkedIn profile URL",
+    example: "https://www.linkedin.com/in/johndoe",
+    required: false,
+  })
+  @IsOptional()
+  @IsString()
+  @MaxLength(255)
+  linkedin?: string
 }
