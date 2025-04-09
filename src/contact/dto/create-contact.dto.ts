@@ -3,90 +3,93 @@ import { ApiProperty } from "@nestjs/swagger"
 
 export class CreateContactDto {
   @ApiProperty({
-    description: "Full name of the contact",
-    example: "John Doe",
+    description: "Nome completo do contato",
+    example: "João Silva",
     required: true,
   })
-  @IsNotEmpty()
-  @IsString()
-  @MaxLength(100)
+  @IsNotEmpty({ message: "O nome completo é obrigatório" })
+  @IsString({ message: "O nome completo deve ser uma string" })
+  @MaxLength(100, { message: "O nome completo deve ter no máximo 100 caracteres" })
   fullName: string
 
   @ApiProperty({
-    description: "Email address",
-    example: "john.doe@example.com",
+    description: "Endereço de e-mail",
+    example: "joao.silva@exemplo.com",
     required: true,
   })
-  @IsNotEmpty()
-  @IsEmail()
+  @IsNotEmpty({ message: "O e-mail é obrigatório" })
+  @IsEmail({}, { message: "O e-mail deve ser um endereço válido" })
   email: string
 
   @ApiProperty({
-    description: "Phone number",
+    description: "Número de telefone",
     example: "+5511999999999",
-    required: false,
-  })
-  @IsOptional()
-  @IsString()
-  phone?: string
-
-  @ApiProperty({
-    description: "Objective or purpose of the contact",
-    example: "I want to know more about your services",
     required: true,
   })
-  @IsNotEmpty()
-  @IsString()
-  @MaxLength(500)
+  @IsNotEmpty({ message: "O telefone é obrigatório" })
+  @IsString({ message: "O telefone deve ser uma string" })
+  phone: string
+
+  @ApiProperty({
+    description: "Objetivo ou propósito do contato",
+    example: "Quero saber mais sobre seus serviços",
+    required: true,
+  })
+  @IsNotEmpty({ message: "O objetivo é obrigatório" })
+  @IsString({ message: "O objetivo deve ser uma string" })
+  @MaxLength(500, { message: "O objetivo deve ter no máximo 500 caracteres" })
   objective: string
 
   @ApiProperty({
-    description: "How the contact found out about the service",
-    enum: ["feira", "internet", "indicacao", "outros"],
+    description: "Como o contato conheceu o serviço",
+    enum: ["feira", "internet", "indicacao", "outros", "websites"],
     example: "internet",
     required: false,
   })
   @IsOptional()
-  @IsEnum(["feira", "internet", "indicacao", "outros", "websites",])
+  @IsEnum(["feira", "internet", "indicacao", "outros", "websites"], {
+    message: "A fonte deve ser uma das opções: feira, internet, indicacao, outros ou websites",
+  })
   source?: "feira" | "internet" | "indicacao" | "outros" | "websites"
 
   @ApiProperty({
-    description: "Location of the contact",
+    description: "Localização do contato",
     example: "São Paulo, SP",
     required: false,
   })
   @IsOptional()
-  @IsString()
-  @MaxLength(100)
+  @IsString({ message: "A localização deve ser uma string" })
+  @MaxLength(100, { message: "A localização deve ter no máximo 100 caracteres" })
   location?: string
 
   @ApiProperty({
-    description: "Additional feedback from the contact",
-    example: "I found your website very informative",
+    description: "Feedback adicional do contato",
+    example: "Achei o site muito informativo",
     required: false,
   })
   @IsOptional()
-  @IsString()
-  @MaxLength(500)
+  @IsString({ message: "O feedback deve ser uma string" })
+  @MaxLength(500, { message: "O feedback deve ter no máximo 500 caracteres" })
   feedback?: string
 
   @ApiProperty({
-    description: "Name of the business",
-    example: "Acme Inc.",
+    description: "Nome da empresa",
+    example: "Empresa Exemplo Ltda.",
     required: false,
   })
   @IsOptional()
-  @IsString()
-  @MaxLength(100)
+  @IsString({ message: "O nome da empresa deve ser uma string" })
+  @MaxLength(100, { message: "O nome da empresa deve ter no máximo 100 caracteres" })
   businessName?: string
 
   @ApiProperty({
-    description: "LinkedIn profile URL",
-    example: "https://www.linkedin.com/in/johndoe",
+    description: "URL do perfil do LinkedIn",
+    example: "https://www.linkedin.com/in/joaosilva",
     required: false,
   })
   @IsOptional()
-  @IsString()
-  @MaxLength(255)
+  @IsString({ message: "O LinkedIn deve ser uma string" })
+  @IsUrl({}, { message: "O LinkedIn deve ser uma URL válida" })
+  @MaxLength(255, { message: "O LinkedIn deve ter no máximo 255 caracteres" })
   linkedin?: string
 }
