@@ -89,7 +89,6 @@ export class CreateContactDto {
   })
   @IsOptional()
   @IsString({ message: "O LinkedIn deve ser uma string" })
-  @IsUrl({}, { message: "O LinkedIn deve ser uma URL válida" })
   @MaxLength(255, { message: "O LinkedIn deve ter no máximo 255 caracteres" })
   linkedin?: string
 }
